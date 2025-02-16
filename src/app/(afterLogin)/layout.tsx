@@ -9,9 +9,10 @@ import FollowRecommend from "./_components/FollowRecommend";
 
 interface HomeLayoutProps {
   children: React.ReactNode;
+  modal?: React.ReactNode;
 }
 
-const AfterLoginLayout = ({ children }: HomeLayoutProps) => {
+const AfterLoginLayout = ({ children, modal }: HomeLayoutProps) => {
   return (
     <div className={st.container}>
       <header className={st.leftSectionWrapper}>
@@ -58,6 +59,7 @@ const AfterLoginLayout = ({ children }: HomeLayoutProps) => {
           </section>
         </div>
       </div>
+      {modal}
     </div>
   );
 };

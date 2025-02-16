@@ -1,5 +1,7 @@
+import Home from "../../home/page";
+
 const Tweet = () => {
-  return <div>Tweet</div>;
+  return <Home />;
 };
 
 export default Tweet;

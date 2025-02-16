@@ -100,3 +100,9 @@ a {
     color-scheme: dark;
   }
 }
+
+textarea {
+  resize: none;
+  color: black;
+  background-color: white;
+}
