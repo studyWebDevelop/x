@@ -36,11 +36,19 @@
 }
 
 .postUserImage {
-  position: relative;
-  display: inline-block;
   width: 40px;
   height: 40px;
   border-radius: 20px;
+}
+
+.postUserImage img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.postIcon {
+  background-color: pink;
 }
 
 .postShade {

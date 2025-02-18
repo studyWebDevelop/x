@@ -1,6 +1,10 @@
 import st from "./SearchForm.module.css";
 
-const SearchForm = () => {
+interface SearchFormProps {
+  q?: string;
+}
+
+const SearchForm = ({ q }: SearchFormProps) => {
   return (
     <form className={st.search}>
       <svg width={20} viewBox="0 0 24 24" aria-hidden="true">
