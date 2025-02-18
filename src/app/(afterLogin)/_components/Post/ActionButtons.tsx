@@ -3,9 +3,13 @@
 import st from "./Post.module.css";
 import clsx from "clsx";
 
-const ActionButtons = () => {
-  const commented = true;
-  const reposted = true;
+interface ActionButtonsProps {
+  white?: boolean;
+}
+
+const ActionButtons = ({ white }: ActionButtonsProps) => {
+  const commented = false;
+  const reposted = false;
   const liked = false;
 
   const onClickComment = () => {};
@@ -14,7 +18,13 @@ const ActionButtons = () => {
 
   return (
     <div className={st.actionButtons}>
-      <div className={clsx(st.commentButton, commented && st.commented)}>
+      <div
+        className={clsx(
+          st.commentButton,
+          { [st.commented]: commented },
+          white && st.white
+        )}
+      >
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -24,7 +34,13 @@ const ActionButtons = () => {
         </button>
         <div className={st.count}>{1 || ""}</div>
       </div>
-      <div className={clsx(st.repostButton, reposted && st.reposted)}>
+      <div
+        className={clsx(
+          st.repostButton,
+          reposted && st.reposted,
+          white && st.white
+        )}
+      >
         <button onClick={onClickRepost}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -34,7 +50,9 @@ const ActionButtons = () => {
         </button>
         <div className={st.count}>{1 || ""}</div>
       </div>
-      <div className={clsx([st.heartButton, liked && st.liked])}>
+      <div
+        className={clsx([st.heartButton, liked && st.liked, white && st.white])}
+      >
         <button onClick={onClickHeart}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
