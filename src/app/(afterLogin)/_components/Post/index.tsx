@@ -9,6 +9,7 @@ import "dayjs/locale/ko";
 import { faker } from "@faker-js/faker";
 import ActionButtons from "./ActionButtons";
 import PostArticle from "../PostArticle";
+import PostImages from "../PostImages";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -61,26 +62,10 @@ const Post = ({ noImage }: PostProps) => {
             </span>
           </div>
           <div>{target.content}</div>
-          {target.Images && target.Images.length > 0 && (
-            <Link
-              href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}
-              className={st.postImageLink}
-            >
-              <div
-                className={st.image}
-                style={{
-                  width: "95%",
-                  backgroundImage: `url(${target.Images[0]?.link})`,
-                }}
-              ></div>
-              {/* <img
-                className={st.postImage}
-                src={target.Images[0]?.link}
-                alt=""
-              /> */}
-            </Link>
-          )}
-          <div className={st.postImageSection}></div>
+
+          <div className={st.postImageSection}>
+            <PostImages post={target} />
+          </div>
         </div>
       </div>
       <ActionButtons />
