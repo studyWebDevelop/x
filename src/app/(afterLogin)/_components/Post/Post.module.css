@@ -163,7 +163,9 @@
   height: 272px;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  /* grid-template-rows: repeat(2, minmax(272px, 1fr)); */
   grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: repeat(2, minmax(272px, 1fr)); */
   gap: 2px;
 }
 .postImageSection.fourImage > a:nth-child(1) {
