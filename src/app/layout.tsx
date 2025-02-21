@@ -12,7 +12,7 @@ if (
   process.env.NEXT_RUNTIME === "nodejs" &&
   process.env.NODE_ENV !== "production"
 ) {
-  const { server } = require("@/mocks/http");
+  const { server } = require("@/mocks/http"); // 개발모드이고 node.js 환경일때 (서버 컴포넌트일때)
   server?.listen();
 }
 
