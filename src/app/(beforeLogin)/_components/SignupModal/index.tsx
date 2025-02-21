@@ -26,81 +26,81 @@ const showMessage = (messasge: string | null | undefined) => {
 };
 
 export default function SignupModal() {
-  const [state, formAction] = useActionState(onSubmit, { message: "" });
+  const [formState, formDispatch] = useActionState(onSubmit, { message: "" });
   const { pending } = useFormStatus();
 
   return (
-    <>
-      <div className={st.modalBackground}>
-        <div className={st.modal}>
-          <div className={st.modalHeader}>
-            <BackButton />
-            <div>계정을 생성하세요.</div>
-          </div>
-          <form action={formAction}>
-            <div className={st.modalBody}>
-              <div className={st.inputDiv}>
-                <label className={st.inputLabel} htmlFor="id">
-                  아이디
-                </label>
-                <input
-                  id="id"
-                  name="id"
-                  className={st.input}
-                  type="text"
-                  placeholder=""
-                />
-              </div>
-              <div className={st.inputDiv}>
-                <label className={st.inputLabel} htmlFor="name">
-                  닉네임
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  className={st.input}
-                  type="text"
-                  placeholder=""
-                />
-              </div>
-              <div className={st.inputDiv}>
-                <label className={st.inputLabel} htmlFor="password">
-                  비밀번호
-                </label>
-                <input
-                  id="password"
-                  name="name"
-                  className={st.input}
-                  type="password"
-                  placeholder=""
-                />
-              </div>
-              <div className={st.inputDiv}>
-                <label className={st.inputLabel} htmlFor="image">
-                  프로필
-                </label>
-                <input
-                  id="image"
-                  name="image"
-                  className={st.input}
-                  type="file"
-                  accept="image/*"
-                />
-              </div>
-            </div>
-            <div className={st.modalFooter}>
-              <button
-                type="submit"
-                className={st.actionButton}
-                disabled={pending}
-              >
-                가입하기
-              </button>
-              <div className={st.error}>{showMessage(state?.message)}</div>
-            </div>
-          </form>
+    <div className={st.modalBackground}>
+      <div className={st.modal}>
+        <div className={st.modalHeader}>
+          <BackButton />
+          <div>계정을 생성하세요.</div>
         </div>
+        <form action={formDispatch}>
+          <div className={st.modalBody}>
+            <div className={st.inputDiv}>
+              <label className={st.inputLabel} htmlFor="id">
+                아이디
+              </label>
+              <input
+                id="id"
+                name="id"
+                className={st.input}
+                type="text"
+                placeholder=""
+              />
+            </div>
+            <div className={st.inputDiv}>
+              <label className={st.inputLabel} htmlFor="name">
+                닉네임
+              </label>
+              <input
+                id="name"
+                name="name"
+                className={st.input}
+                type="text"
+                placeholder=""
+                required
+              />
+            </div>
+            <div className={st.inputDiv}>
+              <label className={st.inputLabel} htmlFor="password">
+                비밀번호
+              </label>
+              <input
+                id="password"
+                name="password"
+                className={st.input}
+                type="password"
+                placeholder=""
+                required
+              />
+            </div>
+            <div className={st.inputDiv}>
+              <label className={st.inputLabel} htmlFor="image">
+                프로필
+              </label>
+              <input
+                id="image"
+                name="image"
+                className={st.input}
+                type="file"
+                accept="image/*"
+              />
+            </div>
+          </div>
+          <div className={st.modalFooter}>
+            <button
+              type="submit"
+              className={st.actionButton}
+              disabled={pending}
+            >
+              가입하기
+            </button>
+            <div className={st.error}>{showMessage(formState?.message)}</div>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 }

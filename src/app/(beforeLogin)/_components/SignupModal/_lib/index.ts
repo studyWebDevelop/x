@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 
 export const onSubmit = async (
-  state: { message: string } | undefined,
+  state: { message?: string | null },
   formData: FormData
 ) => {
   if (!formData.get("id") || !(formData.get("id") as string)?.trim()) {
@@ -25,27 +25,43 @@ export const onSubmit = async (
     return { message: "no_image" };
   }
 
-  console.log("formData", formData);
+  formData.set("nickname", formData.get("name") as string);
 
-  let isRedirect = false;
+  let shouldRedirect = false;
+
+  const user = {
+    id: formData.get("id"),
+    nickname: formData.get("nickname"),
+    image: formData.get("image") || "/5Udwvqim.jpg",
+  };
 
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
       {
-        method: "POST",
-        body: formData,
-        credentials: "include", // 쿠키 전달을 위해 사용
+        method: "post",
+        body: JSON.stringify(user),
+        credentials: "include",
       }
     );
 
-    isRedirect = true;
+    console.log(response.status);
 
-    console.log("response", response.status);
+    if (response.status === 403) {
+      return { message: "user_exists" };
+    }
+
     console.log(await response.json());
-  } catch (error) {
-    console.log("error", error);
+
+    shouldRedirect = true;
+  } catch (err) {
+    console.error(err);
+    return { message: null };
   }
 
-  if (isRedirect) redirect("/home"); // try/catch 문 안에서는 사용하면 안됨
+  if (shouldRedirect) {
+    redirect("/home"); // try/catch문 안에서 X
+  }
+
+  return { message: null };
 };
