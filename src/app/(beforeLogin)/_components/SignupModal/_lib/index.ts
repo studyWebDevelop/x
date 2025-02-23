@@ -1,5 +1,6 @@
 "use server";
 
+import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 
 export const onSubmit = async (
@@ -54,6 +55,12 @@ export const onSubmit = async (
     console.log(await response.json());
 
     shouldRedirect = true;
+
+    signIn("credentials", {
+      username: formData.get("username"),
+      password: formData.get("password"),
+      redirect: false,
+    });
   } catch (err) {
     console.error(err);
     return { message: null };

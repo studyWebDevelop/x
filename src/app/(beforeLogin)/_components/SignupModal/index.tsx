@@ -2,7 +2,6 @@
 
 import BackButton from "./_components/BackButton";
 import st from "./signupModal.module.css";
-import { useFormStatus } from "react-dom";
 import { onSubmit } from "./_lib";
 import { useActionState } from "react";
 
@@ -26,8 +25,9 @@ const showMessage = (messasge: string | null | undefined) => {
 };
 
 export default function SignupModal() {
-  const [formState, formDispatch] = useActionState(onSubmit, { message: "" });
-  const { pending } = useFormStatus();
+  const [formState, formDispatch, isPending] = useActionState(onSubmit, {
+    message: "",
+  });
 
   return (
     <div className={st.modalBackground}>
@@ -93,7 +93,7 @@ export default function SignupModal() {
             <button
               type="submit"
               className={st.actionButton}
-              disabled={pending}
+              disabled={isPending}
             >
               가입하기
             </button>

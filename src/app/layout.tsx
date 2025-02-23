@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { MSWProvider } from "@/components/MSWComponent";
+import AuthSession from "@/components/AuthSession";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MSWProvider>{children}</MSWProvider>
+        <MSWProvider>
+          <AuthSession>{children}</AuthSession>
+        </MSWProvider>
       </body>
     </html>
   );
