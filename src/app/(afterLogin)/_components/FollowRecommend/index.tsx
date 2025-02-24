@@ -1,8 +1,18 @@
 "use client";
+
+import { useSession } from "next-auth/react";
 import st from "./FollowRecommend.module.css";
+import { redirect } from "next/navigation";
 
 const FollowRecommend = () => {
-  const onFollow = () => {};
+  const { data: me } = useSession();
+
+  const onFollow = () => {
+    if (!me?.user) {
+      alert("로그인이 필요합니다.");
+      redirect("/");
+    }
+  };
 
   const user = {
     id: "elonmusk",

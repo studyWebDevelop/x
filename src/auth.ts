@@ -35,7 +35,7 @@ export const {
 
         console.log("user123", user);
 
-        return {
+        return { 
           email: user.id,
           name: user.nickname,
           image: user.image,

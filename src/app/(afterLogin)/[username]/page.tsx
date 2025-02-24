@@ -1,8 +1,9 @@
 import BackButton from "../_components/BackButton";
 import Post from "../_components/Post";
+import LogoutButton from "./_components/LogoutButton";
 import st from "./profile.module.css";
 
-const Username = () => {
+const Username = async () => {
   const user = {
     id: "zerohch0",
     nickname: "제로초",
@@ -23,7 +24,8 @@ const Username = () => {
           <div>{user.nickname}</div>
           <div>@{user.id}</div>
         </div>
-        <button className={st.followButton}>팔로우</button>
+
+        <LogoutButton />
       </div>
       <div>
         <Post />
