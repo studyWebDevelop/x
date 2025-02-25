@@ -10,26 +10,18 @@ import { faker } from "@faker-js/faker";
 import ActionButtons from "./ActionButtons";
 import PostArticle from "../PostArticle";
 import PostImages from "../PostImages";
+import type { Post } from "@/model/Post";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
 interface PostProps {
   noImage?: boolean;
+  post: Post;
 }
 
-const Post = ({ noImage }: PostProps) => {
-  const target = {
-    postId: 1,
-    User: {
-      id: "elonmusk",
-      nickname: "Elon Musk",
-      image: "/yRsRRjGO.jpg",
-    },
-    content: "클론코딩 라이브로 하니 너무 힘들어요 ㅠㅠ",
-    createdAt: new Date(),
-    Images: [] as any[],
-  };
+const Post = ({ noImage, post }: PostProps) => {
+  const target = post;
 
   if (Math.random() > 0.5 && !noImage) {
     target.Images.push(
@@ -45,7 +37,7 @@ const Post = ({ noImage }: PostProps) => {
       <div className={st.postWrapper}>
         <div className={st.postUserSection}>
           <Link href={`/${target.User.id}`} className={st.postUserImage}>
-            <img src={target.User.image} alt={target.User.nickname} />
+            <img src={target?.User.image} alt={target.User.nickname} />
             <div className={st.postShade} />
           </Link>
         </div>
