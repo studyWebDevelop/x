@@ -12,18 +12,20 @@ import Comments from "./_components/Comments";
 import SinglePost from "../../_components/SinglePost";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-const Page = ({ params }: Props) => {
-  const { id } = params;
+const Page = async ({ params }: Props) => {
+  const { id } = await params;
 
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
+
+  await queryClient.prefetchQuery({
     queryKey: ["posts", id],
     queryFn: getSinglePost,
   });
-  queryClient.prefetchQuery({
+
+  await queryClient.prefetchQuery({
     queryKey: ["posts", id, "comments"],
     queryFn: getComments,
   });
@@ -33,7 +35,6 @@ const Page = ({ params }: Props) => {
   return (
     <div className={st.main}>
       <HydrationBoundary state={dehydratedState}>
-        {" "}
         <div className={st.header}>
           <BackButton />
           <h3 className={st.headerTitle}>게시하기</h3>

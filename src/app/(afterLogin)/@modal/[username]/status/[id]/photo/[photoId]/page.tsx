@@ -13,10 +13,10 @@ import CommentForm from "@/app/(afterLogin)/[username]/status/[id]/_components/C
 import Comments from "@/app/(afterLogin)/[username]/status/[id]/_components/Comments";
 
 interface PhotoModalProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 const PhotoModal = async ({ params }: PhotoModalProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   const queryClient = new QueryClient();
 

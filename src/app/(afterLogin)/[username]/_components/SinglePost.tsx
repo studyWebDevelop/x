@@ -31,6 +31,7 @@ export default function SinglePost({ id, noImage }: Props) {
           fontWeight: "bold",
           justifyContent: "center",
           display: "flex",
+          color: "black",
         }}
       >
         게시글을 찾을 수 없습니다.
