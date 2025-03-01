@@ -7,9 +7,11 @@ import { tabStore } from "@/store/tabStore";
 const Tab = observer(() => {
   const onClickRec = () => {
     tabStore.setTab("rec");
+    console.log("rec", tabStore.tab);
   };
   const onClickFol = () => {
     tabStore.setTab("fol");
+    console.log("fol", tabStore.tab);
   };
 
   return (

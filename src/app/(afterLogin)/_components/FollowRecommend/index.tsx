@@ -3,8 +3,12 @@
 import { useSession } from "next-auth/react";
 import st from "./FollowRecommend.module.css";
 import { redirect } from "next/navigation";
+import { User } from "@/model/User";
 
-const FollowRecommend = () => {
+interface Props {
+  user: User;
+}
+const FollowRecommend = ({ user }: Props) => {
   const { data: me } = useSession();
 
   const onFollow = () => {
@@ -12,12 +16,6 @@ const FollowRecommend = () => {
       alert("로그인이 필요합니다.");
       redirect("/");
     }
-  };
-
-  const user = {
-    id: "elonmusk",
-    nickname: "Elon Musk",
-    image: "/yRsRRjGO.jpg",
   };
 
   return (

@@ -1,6 +1,6 @@
 import BackButton from "../_components/BackButton";
-import Post from "../_components/Post";
 import SearchForm from "../_components/SearchForm";
+import SearchResult from "./_components/SearchResult";
 import Tap from "./_components/Tab";
 import st from "./search.module.css";
 
@@ -9,7 +9,7 @@ interface SearchProps {
 }
 
 const Search = async ({ searchParams }: SearchProps) => {
-  const { q } = await searchParams;
+  const query = await searchParams;
 
   return (
     <main className={st.main}>
@@ -19,24 +19,13 @@ const Search = async ({ searchParams }: SearchProps) => {
             <BackButton />
           </div>
           <div className={st.formZone}>
-            <SearchForm q={q} />
+            <SearchForm q={query.q} />
           </div>
         </div>
         <Tap />
       </div>
       <div className={st.list}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        {/*<SearchResult searchParams={searchParams} />*/}
+        <SearchResult searchParams={query} />
       </div>
     </main>
   );

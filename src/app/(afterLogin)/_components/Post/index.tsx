@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import st from "./Post.module.css";

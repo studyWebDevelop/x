@@ -9,6 +9,7 @@ import FollowRecommend from "./_components/FollowRecommend";
 import RightSearchZone from "./_components/RightSearchZone";
 import { auth } from "@/auth";
 import TanstackQueryProvider from "./_components/TanstackQueryProvider";
+import FollowRecommendSection from "./_components/FollowRecommendSection";
 
 interface HomeLayoutProps {
   children: React.ReactNode;
@@ -60,9 +61,7 @@ const AfterLoginLayout = async ({ children, modal }: HomeLayoutProps) => {
               <TrendSection />
               <div className={st.followRecommend}>
                 <h3 style={{ color: "black" }}>팔로우 추천</h3>
-                <FollowRecommend />
-                <FollowRecommend />
-                <FollowRecommend />
+                <FollowRecommendSection />
               </div>
             </section>
           </div>

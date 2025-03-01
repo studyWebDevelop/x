@@ -1,40 +1,43 @@
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 import BackButton from "../_components/BackButton";
 import Post from "../_components/Post";
 import LogoutButton from "./_components/LogoutButton";
 import st from "./profile.module.css";
+import { getUser } from "./_lib/getUser";
+import { getUserPosts } from "./_lib/getUserPosts";
+import UserInfo from "./_components/UserInfo";
+import UserPosts from "./_components/UserPosts";
 
-const Username = async () => {
-  const user = {
-    id: "zerohch0",
-    nickname: "제로초",
-    image: "/5Udwvqim.jpg",
-  };
+type Props = {
+  params: { username: string };
+};
+
+const Username = async ({ params }: Props) => {
+  const { username } = params;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ["users", username],
+    queryFn: getUser,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["posts", "users", username],
+    queryFn: getUserPosts,
+  });
+  const dehydratedState = dehydrate(queryClient);
 
   return (
     <main className={st.main}>
-      <div className={st.header}>
-        <BackButton />
-        <h3 className={st.headerTitle}>{user.nickname}</h3>
-      </div>
-      <div className={st.userZone}>
-        <div className={st.userImage}>
-          <img src={user.image} alt={user.id} />
+      <HydrationBoundary state={dehydratedState}>
+        <UserInfo username={username} />
+        <div>
+          <UserPosts username={username} />
         </div>
-        <div className={st.userName}>
-          <div>{user.nickname}</div>
-          <div>@{user.id}</div>
-        </div>
-
-        <LogoutButton />
-      </div>
-      <div>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-      </div>
+      </HydrationBoundary>
     </main>
   );
 };

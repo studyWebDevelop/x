@@ -6,8 +6,8 @@ import {
 import PostForm from "./_components/PostForm";
 import Tap from "./_components/Tab";
 import st from "./Home.module.css";
-import { getPostRecommend } from "./_lib/postRecommends";
-import PostRecommends from "./_components/PostRecommends";
+import { getPostRecommend } from "./_lib/getPostRecommends";
+import TabDecider from "./_components/TabDecider";
 
 const Home = async () => {
   const queryClient = new QueryClient();
@@ -30,7 +30,7 @@ const Home = async () => {
       <HydrationBoundary state={deHydratedState}>
         <Tap />
         <PostForm />
-        <PostRecommends />
+        <TabDecider />
       </HydrationBoundary>
     </div>
   );

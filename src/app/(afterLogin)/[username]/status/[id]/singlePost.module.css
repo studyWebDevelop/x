@@ -12,18 +12,12 @@
 
 .header {
   display: flex;
-  width: 600px;
   height: 53px;
   align-items: center;
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #eff3f4;
 }
 
 .headerTitle {
   font-size: 20px;
   font-weight: bold;
   margin-left: 30px;
-  color: black;
 }
