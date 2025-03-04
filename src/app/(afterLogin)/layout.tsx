@@ -5,7 +5,6 @@ import ZLogo from "../../../public/zlogo.png";
 import NavMenu from "./_components/NavMenu";
 import LogoutButton from "./_components/LogoutButton";
 import TrendSection from "./_components/TrendSection";
-import FollowRecommend from "./_components/FollowRecommend";
 import RightSearchZone from "./_components/RightSearchZone";
 import { auth } from "@/auth";
 import TanstackQueryProvider from "./_components/TanstackQueryProvider";

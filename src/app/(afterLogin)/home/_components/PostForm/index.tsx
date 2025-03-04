@@ -2,15 +2,12 @@
 
 import { useRef, useState } from "react";
 import st from "./PostForm.module.css";
+import { useSession } from "next-auth/react";
 
 const PostForm = () => {
   const [content, setContent] = useState("");
   const imageRef = useRef<HTMLInputElement>(null);
-
-  const me = {
-    id: "zerohch0",
-    image: "/5Udwvqim.jpg",
-  };
+  const { data: me } = useSession();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +25,7 @@ const PostForm = () => {
     <form className={st.postForm} onSubmit={onSubmit}>
       <div className={st.postUserSection}>
         <div className={st.postUserImage}>
-          <img src={me.image} alt={me.id} />
+          <img src={me?.user?.image} alt={me?.user?.id} />
         </div>
       </div>
       <div className={st.postInputSection}>

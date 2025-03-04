@@ -5,6 +5,7 @@ export const getFollowingPosts = async () => {
       next: {
         tags: ["posts", "followings"],
       },
+      cache: "force-cache", // 서버 컴포넌트에만 적용가능
     }
   );
 

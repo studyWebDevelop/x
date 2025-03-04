@@ -21,7 +21,6 @@ const TrendSection = () => {
   const pathname = usePathname();
   if (pathname == "/explore") return null;
 
-  console.log("ggg", data);
   if (session?.user) {
     return (
       <div className={st.trendBg}>

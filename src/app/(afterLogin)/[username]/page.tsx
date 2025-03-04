@@ -3,9 +3,6 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import BackButton from "../_components/BackButton";
-import Post from "../_components/Post";
-import LogoutButton from "./_components/LogoutButton";
 import st from "./profile.module.css";
 import { getUser } from "./_lib/getUser";
 import { getUserPosts } from "./_lib/getUserPosts";

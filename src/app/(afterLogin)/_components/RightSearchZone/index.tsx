@@ -1,14 +1,27 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import st from "./RightSearchZone.module.css";
 import SearchForm from "../SearchForm";
 
 const RightSearchZone = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const onChangeFollow = () => {};
-  const onChangeAll = () => {};
+  const onChangeFollow = () => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("pf", "on");
+
+    router.replace(`/search?${newSearchParams.toString()}`);
+  };
+
+  const onChangeAll = () => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete("pf", "on");
+
+    router.replace(`/search?${newSearchParams.toString()}`);
+  };
 
   if (pathname == "/explore") return null;
 

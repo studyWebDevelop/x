@@ -1,4 +1,4 @@
-import { http, HttpResponse, StrictResponse } from "msw";
+import { delay, http, HttpResponse, StrictResponse } from "msw";
 import { faker } from "@faker-js/faker";
 
 function generateDate() {
@@ -99,7 +99,8 @@ export const handlers = [
       },
     ]);
   }),
-  http.get(`${baseUrl}/api/followingPosts`, ({ request }) => {
+  http.get(`${baseUrl}/api/followingPosts`, async ({ request }) => {
+    await delay(2000);
     return HttpResponse.json([
       {
         postId: 1,
@@ -259,7 +260,7 @@ export const handlers = [
       });
     }
   ),
-  http.get(`${baseUrl}api/posts/:postId/comments`, ({ request, params }) => {
+  http.get(`${baseUrl}/api/posts/:postId/comments`, ({ request, params }) => {
     const { postId } = params;
     return HttpResponse.json([
       {

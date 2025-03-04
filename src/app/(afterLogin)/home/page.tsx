@@ -8,13 +8,16 @@ import Tap from "./_components/Tab";
 import st from "./Home.module.css";
 import { getPostRecommend } from "./_lib/getPostRecommends";
 import TabDecider from "./_components/TabDecider";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const Home = async () => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ["posts", "recommends"],
     queryFn: getPostRecommend,
+    initialPageParam: 0, // cursor 값
   });
 
   const deHydratedState = dehydrate(queryClient);
@@ -30,10 +33,14 @@ const Home = async () => {
       <HydrationBoundary state={deHydratedState}>
         <Tap />
         <PostForm />
-        <TabDecider />
+        <Suspense fallback={<Loading />}>
+          <TabDecider />
+        </Suspense>
       </HydrationBoundary>
     </div>
   );
 };
 
 export default Home;
+
+// suspense는 서버 컴포넌트에서만 사용가능함.
